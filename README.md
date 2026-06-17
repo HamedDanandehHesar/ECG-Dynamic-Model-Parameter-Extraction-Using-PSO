@@ -1,7 +1,7 @@
 
 # ECG Modeling Using Gaussian Mixture in Phase Domain
 
-This repository provides a MATLAB implementation for **modeling ECG morphology in the phase domain using a Gaussian Mixture Model (GMM)**.  
+This repository provides a MATLAB implementation for **modeling ECG morphology using a Gaussian Mixture Model (GMM) and PSO**.  
 The method detects cardiac cycles, converts the ECG signal to a **phase representation**, estimates the **average ECG morphology**, and approximates it using a set of **Gaussian kernels optimized with Particle Swarm Optimization (PSO)**.
 
 The resulting Gaussian parameters can be used to **reconstruct or synthesize ECG signals** and analyze ECG morphology in a compact parametric form.
