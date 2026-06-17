@@ -34,8 +34,9 @@ Z(\theta) = \sum_{i=1}^{N} a_i \exp\left(-\frac{(\theta-\theta_i)^2}{2b_i^2}\rig
 
 Where:
 
-- ```math
-- a_i``` : amplitude of the Gaussian component  
+```math
+- a_i```
+: amplitude of the Gaussian component  
 - `b_i` : width (standard deviation)  
 - `theta_i` : center phase of the component  
 - `N` : number of Gaussian components  
