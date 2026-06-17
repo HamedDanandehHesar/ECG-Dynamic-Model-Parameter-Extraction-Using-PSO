@@ -1,4 +1,4 @@
-:::writing
+
 # ECG Modeling Using Gaussian Mixture in Phase Domain
 
 This repository provides a MATLAB implementation for **modeling ECG morphology in the phase domain using a Gaussian Mixture Model (GMM)**.  
@@ -24,20 +24,20 @@ The method models the ECG morphology as a **sum of Gaussian functions defined in
 
 ---
 
-
-```markdown
 # Mathematical Model
 
 The ECG morphology in the phase domain is approximated by a sum of Gaussian kernels:
-`
+
 ```math
-Z(θ)=∑i=1N​ai​exp(−2bi2​(θ−θi​)2​)
+Z(\theta) = \sum_{i=1}^{N} a_i \exp\left(-\frac{(\theta-\theta_i)^2}{2b_i^2}\right)
+```
+
 Where:
 
-- \(a_i\) : amplitude of the Gaussian component  
-- \(b_i\) : width (standard deviation)  
-- \(\theta_i\) : center phase of the component  
-- \(N\) : number of Gaussian components  
+- `a_i` : amplitude of the Gaussian component  
+- `b_i` : width (standard deviation)  
+- `\theta_i` : center phase of the component  
+- `N` : number of Gaussian components  
 
 These parameters describe the morphology of the ECG waveform (P wave, QRS complex, T wave, etc.).
 
@@ -77,9 +77,9 @@ The ECG signal is transformed into a **phase representation** using RR intervals
 
 Each heartbeat is mapped into the interval:
 
-\[
+```math
 [-\pi, \pi]
-\]
+```
 
 This representation makes it easier to analyze ECG morphology independently of heart rate.
 
@@ -89,8 +89,8 @@ This representation makes it easier to analyze ECG morphology independently of h
 
 The ECG signal is divided into **phase bins** and the following statistics are computed:
 
-- Mean ECG waveform
-- Standard deviation per phase bin
+- Mean ECG waveform  
+- Standard deviation per phase bin  
 
 This produces a **phase‑aligned average ECG morphology**.
 
@@ -102,9 +102,9 @@ The ECG mean waveform is approximated by multiple Gaussian kernels.
 
 Optimization is performed using **Particle Swarm Optimization (PSO)** to estimate:
 
-- Gaussian amplitudes \(a_i\)
-- Gaussian widths \(b_i\)
-- Gaussian phase centers \(θ_i\)
+- Gaussian amplitudes `a_i`
+- Gaussian widths `b_i`
+- Gaussian phase centers `\theta_i`
 
 Initially many Gaussian kernels are extracted, and then the **strongest components** are selected.
 
@@ -134,15 +134,15 @@ ECG signal with detected R‑peaks.
 
 Comparison between:
 
-- Original ECG mean waveform
-- Gaussian mixture approximation.
+- Original ECG mean waveform  
+- Gaussian mixture approximation  
 
 **Figure 3**
 
 Comparison between:
 
-- Original ECG signal
-- Synthetic ECG signal generated from Gaussian parameters.
+- Original ECG signal  
+- Synthetic ECG signal generated from Gaussian parameters  
 
 ---
 
@@ -156,7 +156,7 @@ The script stores estimated parameters in a MATLAB file:
 
 Saved variables include:
 
-- `OptimumParams` → Gaussian parameters ``` math[a_i , b_i , θ_i] `
+- `OptimumParams` → Gaussian parameters `[a_i , b_i , \theta_i]`
 - `ECGmean` → ECG mean waveform in phase domain
 - `fs` → sampling frequency
 - `x` → original ECG signal
@@ -165,9 +165,9 @@ Saved variables include:
 
 # Requirements
 
-- MATLAB
-- Global Optimization Toolbox (for `particleswarm`)
-- Pan–Tompkins QRS detection implementation
+- MATLAB  
+- Global Optimization Toolbox (for `particleswarm`)  
+- Pan–Tompkins QRS detection implementation  
 
 ---
 
@@ -186,35 +186,11 @@ This framework can be used in several ECG processing tasks:
 
 # Related Publication
 
-The optimization framework used in this repository is related to our research on ECG modeling and enhancement using **Particle Swarm Optimization within a Bayesian framework**.
-
-If you use this code in your research, please cite:
+If you use this code in your research please cite:
 
 H. Danandeh Hesar and A. Danandeh Hesar  
-**“ECG enhancement using a modified Bayesian framework and particle swarm optimization”**  
-Biomedical Signal Processing and Control, Vol. 80, 104280, 2023.
+**ECG enhancement using a modified Bayesian framework and particle swarm optimization**  
+Biomedical Signal Processing and Control, 2023
 
 https://doi.org/10.1016/j.bspc.2022.104280
-
----
-
-# BibTeX
-
 ```
-@article{danandeh2023ecg,
-  title={ECG enhancement using a modified Bayesian framework and particle swarm optimization},
-  author={Danandeh Hesar, Hamed and Danandeh Hesar, Amin},
-  journal={Biomedical Signal Processing and Control},
-  volume={80},
-  pages={104280},
-  year={2023},
-  publisher={Elsevier}
-}
-```
-
----
-
-# License
-
-This project is intended for **research and educational purposes**.
-:::
