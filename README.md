@@ -1,4 +1,6 @@
 <img width="560" height="420" alt="Untitled" src="https://github.com/user-attachments/assets/a1d22137-0afb-4929-9ad9-a6cdff8b222f" />
+<img width="560" height="420" alt="untitled1" src="https://github.com/user-attachments/assets/70c995fa-2a5b-4e76-911f-e5891dd73134" />
+
 
 # ECG Modeling Using Gaussian Mixture in Phase Domain
 
