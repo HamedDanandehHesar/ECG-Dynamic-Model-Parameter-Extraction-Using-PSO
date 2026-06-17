@@ -31,8 +31,7 @@ The method models the ECG morphology as a **sum of Gaussian functions defined in
 The ECG morphology in the phase domain is approximated by a sum of Gaussian kernels:
 `
 ```math
-Z(\theta) = \sum_{i=1}^{N} a_i \exp\left(-\frac{(\theta-\theta_i)^2}{2b_i^2}\right)
-`
+Z(\theta) = \sum_{i=1}^{N} a_i \exp\left(-\frac{(\theta-\theta_i)^2}{2b_i^2}\right) `
 Where:
 
 - \(a_i\) : amplitude of the Gaussian component  
