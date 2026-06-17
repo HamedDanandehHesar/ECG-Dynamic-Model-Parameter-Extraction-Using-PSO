@@ -38,7 +38,7 @@ Where:
 - `b_i` : width (standard deviation)  
 - `theta_i` : center phase of the component  
 - `N` : number of Gaussian components  
-```
+
 These parameters describe the morphology of the ECG waveform (P wave, QRS complex, T wave, etc.).
 
 ---
