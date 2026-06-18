@@ -68,6 +68,10 @@ title([num2str(i) 'th' '  Gaussian'])
 % pause(3)
 end
 
+
+
+
+%% selection of the Strongest Peaks
 [~,indx_strongest_peaks] = sort(abs(ai),'descend');
 
 ai = ai(indx_strongest_peaks(1:MaxNumGaussian));
@@ -112,6 +116,11 @@ figure(3)
 plot(t,ECG,'b', t,Z,'--r')
 legend({'Original ECG', 'Synthetic ECG'})
 
+%% Sorting of parameters from based on tetai from -pi to pi
+
+[Theta_i,idx] = sort(Theta_i,'ascend');
+Alpha_i = Alpha_i(idx);
+Beta_i = Beta_i(idx);
 OptimumParams = [Alpha_i Beta_i Theta_i];
 
 savefile_params  = [file(1:end-4) '_params_nonlinear_Phase.mat']; 

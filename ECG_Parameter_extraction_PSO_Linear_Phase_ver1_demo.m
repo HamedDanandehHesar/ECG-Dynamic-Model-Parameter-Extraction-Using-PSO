@@ -22,13 +22,13 @@ legend({'ECG Signal','R Peaks'})
 title(file)
 %% -------- Phase calculation
 % Linear phase based on RR intervals
-[phase,~] = calculate_linear_phase_ver2(qrs_positions,length_sig,fs);
+[Linearphase,~] = calculate_linear_phase_ver2(qrs_positions,length_sig,fs);
 
 % Alternative options:
 % phase = calculate_dtw_phase(ecg, qrs_positions);   % DTW-based nonlinear phase
 
 %% -------- ECG mean and standard deviation in phase domain
-[ECGsd,ECGmean,meanphase] = ecgsd_extractor_ver1(ecg,phase,ecg_bins);
+[ECGsd,ECGmean,meanphase] = ecgsd_extractor_ver1(ecg,Linearphase,ecg_bins);
 
 %% -------- ECG parameter extraction using Gaussian mixture model
 
@@ -69,6 +69,7 @@ title([num2str(i) 'th' '  Gaussian'])
 % pause(3)
 end
 
+%% selection of the Strongest Peaks
 [~,indx_strongest_peaks] = sort(abs(ai),'descend');
 
 ai = ai(indx_strongest_peaks(1:MaxNumGaussian));
@@ -101,7 +102,7 @@ Z = zeros(1,length(ECG));       % Synthetic ECG signal
 
 for j = 1:length(Alpha_i)
     % Phase difference wrapped to [-pi, pi]
-    dTheta = rem(phase - Theta_i(j) + pi, 2*pi) - pi;
+    dTheta = rem(Linearphase - Theta_i(j) + pi, 2*pi) - pi;
 
     % Add Gaussian contribution
     Z = Z + Alpha_i(j) .* exp(-dTheta.^2./(2*Beta_i(j).^2));
@@ -113,12 +114,15 @@ figure(3)
 plot(t,ECG,'b', t,Z,'--r')
 legend({'Original ECG', 'Synthetic ECG'})
 
+%% Sorting of parameters from based on tetai from -pi to pi
+
+[Theta_i,idx] = sort(Theta_i,'ascend');
+Alpha_i = Alpha_i(idx);
+Beta_i = Beta_i(idx);
 OptimumParams = [Alpha_i Beta_i Theta_i];
 
-savefile_params  = [file(1:end-4) '_params_linear_Phase.mat']; 
+savefile_params  = [file(1:end-4) '_params_Linear_Phase.mat']; 
 save(savefile_params,'x',"OptimumParams","ECGmean","fs")
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Functions
